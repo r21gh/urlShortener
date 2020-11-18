@@ -1,20 +1,17 @@
 package main
 
 import (
-	"fmt"
-	"os"
+	"log"
+	"net/http"
+
+	"urlShortener/web"
 )
 
-func Hello(target string) string {
-	return fmt.Sprintf("Hello, %s", target)
-}
-
 func main() {
-	target := "World"
-	if len(os.Args) >= 2 {
-		target = os.Args[1]
+	mux := http.NewServeMux()
+	web.RegisterHandlers(mux)
+
+	if err := http.ListenAndServe(":6985", mux); err != nil {
+		log.Fatalf("unable to start server: %v\n", err)
 	}
-
-	fmt.Println(Hello(target))
 }
-
