@@ -1,1 +1,1 @@
-Simple URL Shortening Service Written in Go.
+Simple URL shortener written in Golang.
